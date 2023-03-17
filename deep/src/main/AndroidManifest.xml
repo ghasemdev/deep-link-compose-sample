@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <application>
+    <activity
+        android:name=".DeepActivity"
+        android:exported="true"
+        android:launchMode="singleTask">
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+            android:host="stackoverflow.com"
+            android:path="/questions/66801838/how-do-i-programmatically-open-an-external-url-on-a-button-click-with-jetpack-co"
+            android:scheme="https" />
+      </intent-filter>
+    </activity>
+  </application>
+
+</manifest>
