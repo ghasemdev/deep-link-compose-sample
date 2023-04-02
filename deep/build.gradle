@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp' version '1.8.10-1.0.9'
+    id 'maven-publish'
 }
 
 android {
@@ -18,7 +19,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -50,8 +51,8 @@ android {
 dependencies {
     implementation 'com.github.hasin-neobank:android-persian-picker:1.2.3'
 
-    implementation 'io.github.raamcosta.compose-destinations:core:1.8.36-beta'
-    ksp 'io.github.raamcosta.compose-destinations:ksp:1.8.36-beta'
+    implementation 'io.github.raamcosta.compose-destinations:core:1.8.38-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.8.38-beta'
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
@@ -65,4 +66,18 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = "com.example.deep"
+                artifactId = "deep"
+                version = "0.0.1"
+
+                from components.release
+            }
+        }
+    }
 }

@@ -19,10 +19,19 @@ android {
             useSupportLibrary true
         }
     }
-
+    signingConfigs {
+        release {
+            keyAlias "deep"
+            keyPassword "jakode2020"
+            storePassword "jakode2020"
+            storeFile file("${rootDir.absolutePath}\\deep.jks")
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,8 +56,10 @@ android {
 }
 
 dependencies {
-    implementation project(":deep")
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    implementation project(":deep")
 
+    implementation "androidx.startup:startup-runtime:1.1.1"
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.0'

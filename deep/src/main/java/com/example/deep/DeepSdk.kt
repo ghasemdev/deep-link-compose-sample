@@ -3,7 +3,9 @@ package com.example.deep
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.annotation.Keep
 
+@Keep
 class DeepSdk(
   private val context: Context,
   private val baseUrl: String,
@@ -15,6 +17,7 @@ class DeepSdk(
     context.startActivity(intent)
   }
 
+  @Keep
   class Builder(private val context: Context) {
     private var baseUrl: String = ""
     fun setBaseUrl(baseUrl: String) = apply { this.baseUrl = baseUrl }
@@ -24,6 +27,7 @@ class DeepSdk(
   }
 }
 
+@Keep
 fun deepSdk(context: Context, block: DeepSdk.Builder.() -> DeepSdk.Builder): DeepSdk {
   return block(DeepSdk.Builder(context)).build()
 }
